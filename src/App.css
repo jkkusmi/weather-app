@@ -56,7 +56,7 @@ section {
   overflow: hidden;
 }
 
-.hero-content {
+.splash-content {
   text-align: center;
   animation: fadeIn 1.5s ease-out;
   display: flex;
@@ -223,7 +223,7 @@ section {
   60% {transform: translateY(-5px);}
 }
 @media (max-width: 768px) {
-  .hero-content {
+  .splash-content {
     margin-top: -10vh;
   }
   .locations-grid {

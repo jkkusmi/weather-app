@@ -7,7 +7,7 @@
   --text-secondary: rgba(255, 255, 255, .6);
 
   /*placeholder for now*/
-  --background-dawn-sunny: linear-gradient(0deg,rgba(243, 144, 79, 1) 0%, rgba(59, 67, 113, 1) 100%);
+  --background-dawn-sunny: linear-gradient(0deg,rgba(243, 144, 79, 1) 0%, rgba(59, 67, 113, .8) 100%);
 }
 
 * {
@@ -19,7 +19,9 @@
 html, body {
   font-family: 'Inter', sans-serif;
   color: var(--text-primary);
-  background: var(--background-dawn-sunny); /*linear-gradient(135deg, #4b6cb7 0%, #182848 100%);*/
+  background-image:
+    var(--background-dawn-sunny), /*linear-gradient(135deg, #4b6cb7 0%, #182848 100%);*/
+    url("assets/pexels-felix-mittermeier-956999.jpg");
   overflow: hidden;
 }
 
@@ -54,6 +56,91 @@ section {
   padding: 1rem;
   position: relative;
   overflow: hidden;
+}
+
+.temperature-switch {
+  position:fixed;
+  width: 32px;
+  height: 32px;
+  right: 32px;
+  top: 32px;
+  transition: background .2s;
+
+  color: #fff;
+  background: transparent;
+  border: 1px solid;
+  border-color: transparent;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.temperature-switch:hover{
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.search-container {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 32px);
+  align-items: center;
+  width: 80%;
+  max-width: 800px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  border-radius: 30px;
+  z-index: 1;
+}
+
+.results-grid {
+  padding: 15px;
+  display: grid;
+  gap: 8px;
+}
+
+.results-grid.hide {
+  display: none;
+}
+
+.result-card {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar {
+  padding: 10px 15px;
+  display: flex;
+  height: 60px;
+  z-index: 10;
+  background: transparent;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 30px;
+}
+
+.search-bar:hover {
+  background: var(--glass-bg);
+}
+
+.search-input {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  padding: 5px;
+  font-size: 16px;
+  color: #fff;
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .splash-content {
@@ -112,7 +199,7 @@ section {
   border: 1px solid var(--glass-border);
   border-radius: 24px;
   width: 95%;
-  max-width: 800px;
+  max-width: 900px;
   padding: clamp(1.5rem, 5vw, 4rem);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, .333);
   
@@ -150,6 +237,24 @@ section {
 .value {
   font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   font-weight: 600;
+}
+
+.panel-header {
+  padding: 1rem;
+}
+
+.forecast-scroll-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: 300px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.forecast-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .locations-grid {

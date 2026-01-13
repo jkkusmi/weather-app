@@ -1,5 +1,5 @@
 import axios from "axios";
-import { OPENWEATHERMAP_API_KEY } from './config.ts';
+import { OPENWEATHERMAP_API_KEY } from './config';
 
 type WeatherResponse = {
   name: string;
@@ -27,14 +27,15 @@ type WeatherResponse = {
     all: number;
   };
   visibility: number;
-  sys?: {
+  sys: {
     country: string;
     sunrise: number;
     sunset: number;
   };
-  timezone?: number;
+  timezone: number;
   id?: number;
   cod?: number;
+  dt: number;
 };
 
 export interface MainWeather {
@@ -51,6 +52,7 @@ export interface MainWeather {
   icon: string;
   clouds: number;
   visiblity: number;
+  background: string;
 }
 
 export interface MiniWeather {
@@ -64,6 +66,29 @@ const API_KEY = OPENWEATHERMAP_API_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 //helper funcs
+
+type TimeOfDay = "dawn" | "noon" | "dusk" | "night";
+function resolveTimeOfDay(
+  dt: number,
+  timezone: number,
+  sunrise: number,
+  sunset: number
+): TimeOfDay {
+  const local = dt + timezone;
+  const sr = sunrise + timezone;
+  const ss = sunset + timezone;
+
+  const DAWN_START = sr - 45 * 60;
+  const DAWN_END = sr + 60 * 60;
+
+  const DUSK_START = ss - 60 * 60;
+  const DUSK_END = ss + 45 * 60;
+
+  if (local >= DAWN_START && local <= DAWN_END) return "dawn";
+  if (local > DAWN_END && local < DUSK_START) return "noon";
+  if (local >= DUSK_START && local <= DUSK_END) return "dusk";
+  return "night";
+}
 
 const kToC = (k: number) => Math.round((k - 273.15) * 10) / 10;
 
@@ -88,6 +113,15 @@ const mapIcon = (iconCode: string): string => {
   return mapping[iconCode] || '❓';
 };
 
+function mapCondition(main: string): string {
+  switch (main.toLowerCase()) {
+    case "clear": return "clear";
+    case "snow": return "snow";
+    default:
+      return "overcast";
+  }
+}
+
 //end section
 
 export class WeatherService {
@@ -99,6 +133,13 @@ export class WeatherService {
 
   static async getMain(city: string): Promise<MainWeather> {
     const d = await this.fetch(city);
+    const timeOfDay = resolveTimeOfDay(
+      d.dt,
+      d.timezone,
+      d.sys.sunrise,
+      d.sys.sunset
+    );
+
 
     return {
       city: d.name,
@@ -113,7 +154,8 @@ export class WeatherService {
       description: d.weather[0].description,
       icon: mapIcon(d.weather[0].icon),
       clouds: d.clouds.all,
-      visiblity: d.visibility
+      visiblity: d.visibility,
+      background: `--background-${timeOfDay}-${mapCondition(d.weather[0].main.toLowerCase())}`,
     };
   }
 

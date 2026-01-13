@@ -6,8 +6,17 @@
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, .6);
 
-  /*placeholder for now*/
-  --background-dawn-sunny: linear-gradient(0deg,rgba(243, 144, 79, 1) 0%, rgba(59, 67, 113, .8) 100%);
+  --background-dawn-clear: linear-gradient(0deg,rgba(243, 144, 79, 1) 0%, rgba(59, 67, 113, .8) 100%);
+  --background-noon-clear: linear-gradient(0deg,rgba(0, 119, 182, 1) 0%, rgba(0, 180, 216, 1) 50%);
+  --background-dusk-clear: linear-gradient(0deg,rgba(181, 101, 118, 1) 0%, rgba(109, 89, 122, .9) 50%, rgba(53, 80, 112,0.4) 100%);;
+  --background-night-clear: linear-gradient(0deg,rgba(4, 5, 46, 1) 0%, rgba(20, 1, 82, .6) 100%);
+
+  --background-dawn-overcast: linear-gradient(0deg,rgba(120, 133, 133, 1) 0%, rgba(156, 174, 169, 1) 100%);
+  --background-noon-overcast: linear-gradient(0deg,rgba(156, 174, 169, 1) 0%, rgba(204, 218, 209, 1) 100%);
+  --background-dusk-overcast: linear-gradient(0deg,rgba(47, 69, 80, 1) 0%, rgba(156, 174, 169, 1) 100%);
+  --background-night-overcast: linear-gradient(0deg,rgba(47, 69, 80, 1) 60%, rgba(88, 111, 124, 1) 100%);
+
+  --active-background: linear-gradient(0deg,rgba(243, 144, 79, 1) 0%, rgba(59, 67, 113, .8) 100%);
 }
 
 * {
@@ -20,7 +29,7 @@ html, body {
   font-family: 'Inter', sans-serif;
   color: var(--text-primary);
   background-image:
-    var(--background-dawn-sunny), /*linear-gradient(135deg, #4b6cb7 0%, #182848 100%);*/
+    var(--active-background), /*linear-gradient(135deg, #4b6cb7 0%, #182848 100%);*/
     url("assets/pexels-felix-mittermeier-956999.jpg");
   overflow: hidden;
 }

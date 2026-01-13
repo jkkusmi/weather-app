@@ -28,7 +28,7 @@ export const saveLocalPreferences = (state: LocalPreferencesState) => {
 
 const initialState: LocalPreferencesState = {
   MAIN_LOCATION: "Wrocław",
-  SAVED_LOCATIONS: ["Mumbai", "La Paz", "Dubai", "Hanover", "Bergen", "Jalalabad", "Jackpot", "Tehran", "Hokkaido", "Voronezh"],
+  SAVED_LOCATIONS: ["London", "New York", "Sydney"],
   TEMP_UNIT: "C",
 };
 

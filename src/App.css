@@ -16,6 +16,11 @@
   --background-dusk-overcast: linear-gradient(0deg,rgba(47, 69, 80, 1) 0%, rgba(156, 174, 169, 1) 100%);
   --background-night-overcast: linear-gradient(0deg,rgba(47, 69, 80, 1) 60%, rgba(88, 111, 124, 1) 100%);
 
+  --background-dawn-snow: linear-gradient(0deg, rgba(210, 225, 235, 1) 0%, rgba(170, 200, 215, 0.9) 60%, rgba(140, 175, 195, 0.8) 100%);
+  --background-noon-snow: linear-gradient(0deg, rgba(230, 245, 255, 1) 0%, rgba(205, 230, 245, 1) 50%, rgba(180, 215, 235, 1) 100%);
+  --background-dusk-snow: linear-gradient(0deg, rgba(170, 185, 205, 1) 0%, rgba(140, 160, 185, 0.9) 50%, rgba(110, 130, 160, 0.8) 100%);
+  --background-night-snow: linear-gradient(0deg, rgba(30, 45, 70, 1) 0%, rgba(60, 80, 115, 0.8) 60%, rgba(95, 120, 155, 0.6) 100%);
+
   --active-background: linear-gradient(0deg,rgba(243, 144, 79, 1) 0%, rgba(59, 67, 113, .8) 100%);
 }
 

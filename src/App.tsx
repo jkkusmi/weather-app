@@ -98,7 +98,7 @@ const App: React.FC = () => {
     detailsSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const UpdateLocations = async (_city: string) => {
+  const UpdateLocations = async (_city: string, _stashPrevious: boolean | undefined) => {
     const prevMain = MAIN_LOCATION;
     const prevMainData = main;
     const prevMinis = minis;
@@ -169,7 +169,7 @@ const App: React.FC = () => {
             {filtered.map((l) => (
               <div className="result-card" key={`${l.name}-${l.country}`} onClick=
                 {
-                  () => UpdateLocations(l.name)
+                  () => UpdateLocations(l.name, false)
                 }>
                 {l.name}
                 <button
@@ -183,7 +183,7 @@ const App: React.FC = () => {
                 </button>
               </div>
             ))}
-            <div className="result-card" onClick={() => UpdateLocations(query)}>
+            <div className="result-card" onClick={() => UpdateLocations(query, false)}>
               Add custom: {query}
               <button
                   className={`fav-btn ${(SAVED_LOCATIONS.includes(query.toLowerCase())) ? 'active' : ''}`}
@@ -251,7 +251,7 @@ const App: React.FC = () => {
             {minis.map((loc) => (
               <div key={loc.city} className="location-card" onClick=
                 {
-                  () => UpdateLocations(loc.city)
+                  () => UpdateLocations(loc.city, true)
                 }>
                 <div>
                   <h3>{loc.city}</h3>

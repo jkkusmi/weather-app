@@ -78,7 +78,11 @@ const App: React.FC = () => {
       .then(text => setLocations(parseCSV(text)));
   }, []);
 
-  if (!main) return <div>Loading...</div>;
+  if (!main) return(
+  <div className="app-container">
+    <div>Loading...</div>
+  </div>
+  );
 
   /*
   const toggleFavorite = (id: number) => {

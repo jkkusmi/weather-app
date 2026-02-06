@@ -102,7 +102,7 @@ const App: React.FC = () => {
     detailsSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const UpdateLocations = async (_city: string, _stashPrevious: boolean | undefined) => {
+  const UpdateLocations = async (_city: string) => {
     const prevMain = MAIN_LOCATION;
     const prevMainData = main;
     const prevMinis = minis;
@@ -173,27 +173,27 @@ const App: React.FC = () => {
             {filtered.map((l) => (
               <div className="result-card" key={`${l.name}-${l.country}`} onClick=
                 {
-                  () => UpdateLocations(l.name, false)
+                  () => UpdateLocations(l.name)
                 }>
                 {l.name}
                 <button
                   className={`fav-btn ${(SAVED_LOCATIONS.includes(l.name)) ? 'active' : ''}`}
                   onClick={(e) => {
                     e.stopPropagation();
-                    (SAVED_LOCATIONS.includes(l.name)) ? RemoveMini(l.name) : AddMini(l.name);
+                    return SAVED_LOCATIONS.includes(l.name) ? RemoveMini(l.name) : AddMini(l.name);
                   }}
                 >
                   ★
                 </button>
               </div>
             ))}
-            <div className="result-card" onClick={() => UpdateLocations(query, false)}>
+            <div className="result-card" onClick={() => UpdateLocations(query)}>
               Add custom: {query}
               <button
                   className={`fav-btn ${(SAVED_LOCATIONS.includes(query.toLowerCase())) ? 'active' : ''}`}
                   onClick={(e) => {
                     e.stopPropagation();
-                    (SAVED_LOCATIONS.includes(query.toLowerCase())) ? RemoveMini(query.toLowerCase()) : AddMini(query.toLowerCase());
+                    return SAVED_LOCATIONS.includes(query.toLowerCase()) ? RemoveMini(query.toLowerCase()) : AddMini(query.toLowerCase());
                   }}
                 >
                   ★
@@ -255,7 +255,7 @@ const App: React.FC = () => {
             {minis.map((loc) => (
               <div key={loc.city} className="location-card" onClick=
                 {
-                  () => UpdateLocations(loc.city, true)
+                  () => UpdateLocations(loc.city)
                 }>
                 <div>
                   <h3>{loc.city}</h3>

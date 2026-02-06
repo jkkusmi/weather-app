@@ -23,7 +23,7 @@ export const loadLocalPreferences = (): LocalPreferencesState | undefined => {
 export const saveLocalPreferences = (state: LocalPreferencesState) => {
   try {
     localStorage.setItem(KEY, JSON.stringify(state));
-  } catch {}
+  } catch { console.log("saveLocalPreferences returned with an error"); }
 };
 
 const initialState: LocalPreferencesState = {
